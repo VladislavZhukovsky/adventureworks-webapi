@@ -1,30 +1,34 @@
-﻿using Serilog;
+﻿using Microsoft.WindowsAzure.Storage;
+using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AdventureWorks.Infrastructure
 {
-    public static class Logger
+    public class Logger
     {
-        static Serilog.Core.Logger logger;
+        private readonly Serilog.Core.Logger logger;
 
-        static Logger()
+        public Logger()
         {
+            var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
             logger = new LoggerConfiguration()
                 .WriteTo
-                .File($"C:\\AdventureWorksApiLogs\\log.txt")
+                .AzureTableStorageWithProperties(storageAccount, storageTableName: ConfigurationManager.AppSettings["StorageTableName"])
                 .CreateLogger();
         }
 
-        public static void Info(string message)
+        public void Info(string message)
         {
             logger.Information(message);
         }
 
-        public static void Error(string message, Exception ex = null)
+        public void Error(string message, Exception ex = null)
         {
             if (ex == null)
             {

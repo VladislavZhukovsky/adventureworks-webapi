@@ -9,42 +9,44 @@ namespace AdventureWorks.DbModel
 {
     public class ProductsRepository: IDisposable
     {
+        private readonly Logger logger;
         private ProductsContext context;
 
-        public ProductsRepository()
+        public ProductsRepository(Logger logger)
         {
             context = new ProductsContext();
+            this.logger = logger;
         }
 
         public Product Get(int id)
         {
-            Logger.Info($"Getting product with id = {id}...");
+            logger.Info($"Getting product with id = {id}...");
             return context.Products.Find(id);
         }
 
         public List<Product> GetAll()
         {
-            Logger.Info("Getting all products...");
+            logger.Info("Getting all products...");
             return context.Products.ToList();
         }
 
         public void Create(Product product)
         {
-            Logger.Info("Creating product...");
+            logger.Info("Creating product...");
             context.Products.Add(product);
             context.SaveChanges();
         }
 
         public void Update(Product product)
         {
-            Logger.Info("Updating product...");
+            logger.Info("Updating product...");
             context.Products.Attach(product);
             context.SaveChanges();
         }
 
         public void Delete(Product product)
         {
-            Logger.Info("Deleting product...");
+            logger.Info("Deleting product...");
             context.Products.Remove(product);
             context.SaveChanges();
         }

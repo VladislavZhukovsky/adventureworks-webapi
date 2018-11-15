@@ -11,11 +11,13 @@ namespace AdventureWorks.WebApi.Controllers
 {
     public class ProductsController : ApiController
     {
-        private ProductsRepository repository;
+        private readonly Logger logger;
+        private readonly ProductsRepository repository;
 
         public ProductsController()
         {
-            repository = new ProductsRepository();
+            logger = new Logger();
+            repository = new ProductsRepository(logger);
         }
 
         public IHttpActionResult GetProduct(int id)
@@ -29,13 +31,13 @@ namespace AdventureWorks.WebApi.Controllers
                 }
                 else
                 {
-                    Logger.Info($"Product with id = {id} not found");
+                    logger.Info($"Product with id = {id} not found");
                     return NotFound();
                 }
             }
             catch (Exception ex)
             {
-                Logger.Error(ex.Message, ex);
+                logger.Error(ex.Message, ex);
                 return BadRequest();
             }
         }
@@ -48,7 +50,7 @@ namespace AdventureWorks.WebApi.Controllers
             }
             catch(Exception ex)
             {
-                Logger.Error(ex.Message, ex);
+                logger.Error(ex.Message, ex);
                 return BadRequest();
             }
         }
