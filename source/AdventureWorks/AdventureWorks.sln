@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.WebApi", "Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.Infrastructure", "AdventureWorks.Infrastructure\AdventureWorks.Infrastructure.csproj", "{27771AF8-3480-4C3C-B1B8-059FCA7C7AE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.AzureStorageClient", "AdventureWorks.AzureStorageClient\AdventureWorks.AzureStorageClient.csproj", "{15A450C3-17EB-4356-AD94-CD6898F7A2C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureWorks.Services", "AdventureWorks.Services\AdventureWorks.Services.csproj", "{966AE55A-D324-40C1-B856-1C34759AD1EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{27771AF8-3480-4C3C-B1B8-059FCA7C7AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27771AF8-3480-4C3C-B1B8-059FCA7C7AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27771AF8-3480-4C3C-B1B8-059FCA7C7AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A450C3-17EB-4356-AD94-CD6898F7A2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A450C3-17EB-4356-AD94-CD6898F7A2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A450C3-17EB-4356-AD94-CD6898F7A2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A450C3-17EB-4356-AD94-CD6898F7A2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966AE55A-D324-40C1-B856-1C34759AD1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966AE55A-D324-40C1-B856-1C34759AD1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966AE55A-D324-40C1-B856-1C34759AD1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966AE55A-D324-40C1-B856-1C34759AD1EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
