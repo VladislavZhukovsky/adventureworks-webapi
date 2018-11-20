@@ -12,16 +12,13 @@ namespace AdventureWorks.AzureStorageClient
     public class AzureStorageClient
     {
         private readonly CloudStorageAccount storageAccount;
-        private LoggerClient loggerClient;
-        private BlobClient blobClient;
-        private MessageQueueClient messageQueueClient;
 
         public AzureStorageClient()
         {
             storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
-            loggerClient = new LoggerClient(storageAccount);
-            blobClient = new BlobClient(storageAccount);
-            messageQueueClient = new MessageQueueClient(storageAccount);
+            LoggerClient = new LoggerClient(storageAccount);
+            BlobClient = new BlobClient(storageAccount);
+            MessageQueueClient = new MessageQueueClient(storageAccount);
         }
 
         public LoggerClient LoggerClient { get; private set; }

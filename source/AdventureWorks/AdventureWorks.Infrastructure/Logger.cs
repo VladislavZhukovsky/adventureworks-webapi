@@ -7,9 +7,9 @@ namespace AdventureWorks.Infrastructure
     {
         private readonly LoggerClient logger;
 
-        public Logger(AzureStorageClient.AzureStorageClient azureStorageClient)
+        public Logger(LoggerClient loggerCLient)
         {
-            this.logger = azureStorageClient.LoggerClient;
+            this.logger = loggerCLient;
         }
 
         public void Info(string message)

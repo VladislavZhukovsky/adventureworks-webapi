@@ -19,8 +19,8 @@ namespace AdventureWorks.WebApi.Controllers
         public ProductsController()
         {
             azureStorageClient = new AzureStorageClient.AzureStorageClient();
-            logger = new Logger(azureStorageClient);
-            productsService = new ProductsService(azureStorageClient, logger);
+            logger = new Logger(azureStorageClient.LoggerClient);
+            productsService = new ProductsService(logger);
         }
 
         public IHttpActionResult GetProduct(int id)

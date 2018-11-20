@@ -13,7 +13,7 @@ namespace AdventureWorks.Services
         private readonly Logger logger;
         private readonly ProductsRepository repository;
 
-        public ProductsService(AzureStorageClient.AzureStorageClient azureStorageClient, Logger logger)
+        public ProductsService(Logger logger)
         {
             this.logger = logger;
             repository = new ProductsRepository(logger);
