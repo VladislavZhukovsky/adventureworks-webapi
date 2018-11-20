@@ -1,5 +1,6 @@
 ﻿using AdventureWorks.DbModel;
 using AdventureWorks.Infrastructure;
+using AdventureWorks.Infrastructure.Models;
 using AdventureWorks.Services;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,10 @@ namespace AdventureWorks.WebApi.Controllers
         {
             azureStorageClient = new AzureStorageClient.AzureStorageClient();
             logger = new Logger(azureStorageClient.LoggerClient);
-            productsService = new ProductsService(logger);
+            productsService = new ProductsService(azureStorageClient, logger);
         }
 
+        [HttpGet]
         public IHttpActionResult GetProduct(int id)
         {
             try
@@ -45,6 +47,7 @@ namespace AdventureWorks.WebApi.Controllers
             }
         }
 
+        [HttpGet]
         public IHttpActionResult GetAllProducts()
         {
             try
@@ -52,6 +55,20 @@ namespace AdventureWorks.WebApi.Controllers
                 return Ok(productsService.GetAllProducts());
             }
             catch(Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+                return BadRequest();
+            }
+        }
+        
+        [HttpPost]
+        public IHttpActionResult UploadDocument([FromBody] Document document)
+        {
+            try
+            {
+                return Ok(productsService.UploadDocument(document));
+            }
+            catch (Exception ex)
             {
                 logger.Error(ex.Message, ex);
                 return BadRequest();
