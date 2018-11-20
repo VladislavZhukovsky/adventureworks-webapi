@@ -20,33 +20,33 @@ namespace AdventureWorks.DbModel
 
         public Product Get(int id)
         {
-            logger.Info($"Getting product with id = {id}...");
+            logger.Info($"ProductsRepository: getting product with id = {id}...");
             return context.Products.Find(id);
         }
 
-        public List<Product> GetAll()
+        public IEnumerable<Product> GetAll()
         {
-            logger.Info("Getting all products...");
-            return context.Products.ToList();
+            logger.Info("ProductsRepository: getting all products...");
+            return context.Products.AsEnumerable();
         }
 
         public void Create(Product product)
         {
-            logger.Info("Creating product...");
+            logger.Info("ProductsRepository: creating product...");
             context.Products.Add(product);
             context.SaveChanges();
         }
 
         public void Update(Product product)
         {
-            logger.Info("Updating product...");
+            logger.Info("ProductsRepository: updating product...");
             context.Products.Attach(product);
             context.SaveChanges();
         }
 
         public void Delete(Product product)
         {
-            logger.Info("Deleting product...");
+            logger.Info("ProductsRepository: deleting product...");
             context.Products.Remove(product);
             context.SaveChanges();
         }

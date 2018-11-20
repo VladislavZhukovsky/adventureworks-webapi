@@ -41,7 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdventureWorks.AzureStorageClient\AdventureWorks.AzureStorageClient.csproj">
+      <Project>{15a450c3-17eb-4356-ad94-cd6898f7a2c5}</Project>
+      <Name>AdventureWorks.AzureStorageClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureWorks.DbModel\AdventureWorks.DbModel.csproj">
+      <Project>{dbdbbb2b-e09b-4c62-9bcd-6b50f50c616a}</Project>
+      <Name>AdventureWorks.DbModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureWorks.Infrastructure\AdventureWorks.Infrastructure.csproj">
+      <Project>{27771af8-3480-4c3c-b1b8-059fca7c7ae5}</Project>
+      <Name>AdventureWorks.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

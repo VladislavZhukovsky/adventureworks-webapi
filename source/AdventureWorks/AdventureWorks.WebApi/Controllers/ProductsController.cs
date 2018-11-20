@@ -1,5 +1,6 @@
 ﻿using AdventureWorks.DbModel;
 using AdventureWorks.Infrastructure;
+using AdventureWorks.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,21 @@ namespace AdventureWorks.WebApi.Controllers
     public class ProductsController : ApiController
     {
         private readonly Logger logger;
-        private readonly ProductsRepository repository;
+        private readonly AzureStorageClient.AzureStorageClient azureStorageClient;
+        private readonly ProductsService productsService;
 
         public ProductsController()
         {
-            logger = new Logger();
-            repository = new ProductsRepository(logger);
+            azureStorageClient = new AzureStorageClient.AzureStorageClient();
+            logger = new Logger(azureStorageClient);
+            productsService = new ProductsService(azureStorageClient, logger);
         }
 
         public IHttpActionResult GetProduct(int id)
         {
             try
             {
-                var result = repository.Get(id);
+                var result = productsService.GetProduct(id);
                 if (result != null)
                 {
                     return Ok(result);
@@ -46,7 +49,7 @@ namespace AdventureWorks.WebApi.Controllers
         {
             try
             {
-                return Ok(repository.GetAll());
+                return Ok(productsService.GetAllProducts());
             }
             catch(Exception ex)
             {
@@ -59,9 +62,9 @@ namespace AdventureWorks.WebApi.Controllers
         {
             if (disposing)
             {
-                if (repository != null)
+                if (productsService != null)
                 {
-                    repository.Dispose();
+                    productsService.Dispose();
                 }
             }
             base.Dispose(disposing);

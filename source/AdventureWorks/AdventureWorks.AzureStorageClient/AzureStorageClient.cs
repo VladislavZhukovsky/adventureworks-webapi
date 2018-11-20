@@ -24,16 +24,8 @@ namespace AdventureWorks.AzureStorageClient
             messageQueueClient = new MessageQueueClient(storageAccount);
         }
 
-        public void InitializeLoggerClient()
-        {
-        }
-
-        public void InitializeBlobClient()
-        {
-        }
-
-        public void InitializeMessageQueueClient()
-        {
-        }
+        public LoggerClient LoggerClient { get; private set; }
+        public BlobClient BlobClient { get; private set; }
+        public MessageQueueClient MessageQueueClient { get; private set; }
     }
 }
